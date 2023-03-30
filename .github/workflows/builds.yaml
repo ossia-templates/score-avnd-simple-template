@@ -108,8 +108,8 @@ jobs:
             install/plugins
 
   upload:
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+    name: Combine
+    runs-on: ubuntu-latest
     steps:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
