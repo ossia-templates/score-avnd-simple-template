@@ -99,13 +99,14 @@ jobs:
             ${{ matrix.config.release_flags }}
 
           cmake --build .
+          cmake --build . --target install
 
       - name: Upload release
         uses: actions/upload-artifact@v3
         with:
           name: plugin-${{ matrix.config.os }}
           path: |
-            install/plugins
+            build-release/install/plugins
 
   upload:
     name: Combine
