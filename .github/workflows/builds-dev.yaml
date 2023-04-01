@@ -1,4 +1,4 @@
-name: CMake build
+name: CMake build (dev)
 
 on: push
 
@@ -74,6 +74,7 @@ jobs:
           fi
 
           cmake ../addon \
+            -DCMAKE_MODULE_PATH=../score/cmake \
             -DSCORE_SOURCE_DIR=../score \
             -DOSSIA_SDK=${{ matrix.config.sdk }} \
             ${{ matrix.config.common_flags }} \
@@ -92,6 +93,7 @@ jobs:
           fi
 
           cmake ../addon \
+            -DCMAKE_MODULE_PATH=../score/cmake \
             -DSCORE_SOURCE_DIR=../score \
             -DOSSIA_SDK=${{ matrix.config.sdk }} \
             -DCMAKE_INSTALL_PREFIX=install \

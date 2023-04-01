@@ -1,4 +1,4 @@
-name: CMake build
+name: CMake build (SDK)
 
 on: push
 
@@ -62,6 +62,7 @@ jobs:
       - name: Download ossia SDK
         shell: bash
         run: |
+          chmod +x fetch-sdk.sh
           ./fetch-sdk.sh
 
       - name: Download score headers
@@ -87,6 +88,7 @@ jobs:
           fi
 
           cmake ../addon \
+            -DCMAKE_MODULE_PATH=../usr/lib/cmake/score \
             -DSCORE_SDK=../usr \
             -DOSSIA_SDK=${{ matrix.config.sdk }} \
             ${{ matrix.config.common_flags }} \
@@ -105,6 +107,7 @@ jobs:
           fi
 
           cmake ../addon \
+            -DCMAKE_MODULE_PATH=../usr/lib/cmake/score \
             -DSCORE_SDK=../usr \
             -DOSSIA_SDK=${{ matrix.config.sdk }} \
             -DCMAKE_INSTALL_PREFIX=install \
