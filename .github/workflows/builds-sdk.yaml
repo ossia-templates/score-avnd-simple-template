@@ -89,7 +89,7 @@ jobs:
 
           cmake ../addon \
             -DCMAKE_MODULE_PATH=../usr/lib/cmake/score \
-            -DSCORE_SDK=../usr \
+            -DSCORE_SDK=$PWD/../usr \
             -DOSSIA_SDK=${{ matrix.config.sdk }} \
             ${{ matrix.config.common_flags }} \
             ${{ matrix.config.debug_flags }}
@@ -108,7 +108,7 @@ jobs:
 
           cmake ../addon \
             -DCMAKE_MODULE_PATH=../usr/lib/cmake/score \
-            -DSCORE_SDK=../usr \
+            -DSCORE_SDK=$PWD/../usr \
             -DOSSIA_SDK=${{ matrix.config.sdk }} \
             -DCMAKE_INSTALL_PREFIX=install \
             ${{ matrix.config.common_flags }} \
