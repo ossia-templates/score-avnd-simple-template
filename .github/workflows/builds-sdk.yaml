@@ -123,6 +123,7 @@ jobs:
           name: plugin-${{ matrix.config.os }}
           path: |
             build-release/install/plugins
+            build-release/install/lib
 
   upload:
     name: Combine
