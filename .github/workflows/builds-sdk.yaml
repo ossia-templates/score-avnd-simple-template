@@ -168,9 +168,11 @@ jobs:
             > localaddon.json
 
           cat localaddon.json
+          cp -rf ../addon/LICENSE* .
+          cp -rf ../addon/README* .
 
       - name: Upload release
         uses: actions/upload-artifact@v3
         with:
-          name: plugin-${{ matrix.config.os }}
+          name: plugin
           path: deploy
