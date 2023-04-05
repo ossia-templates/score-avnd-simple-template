@@ -147,24 +147,26 @@ jobs:
           find .
 
           mkdir deploy
+
           find . -name '*.so' -exec cp {} deploy/
           find . -name '*.dylib' -exec cp {} deploy/
           find . -name '*.dll' -exec cp {} deploy/
 
           ls deploy/
-
-          cp plugin-ubuntu-*/*.so deploy/
-          cp plugin-macos-*/*.dylib deploy/
-          cp plugin-windows-*/*.dll
-
           cd deploy/
+          WIN32_PLUGIN=$(basename *.dll)
+          LINUX_PLUGIN=$(basename *.so)
+          MACOS_PLUGIN=$(basename *.dylib)
+
           cat ../addon/addon.json \
           | jq \
-            --arg win64 *.dll \
-            --arg linux64 *.so \
-            --arg darwin64 *.dylib \
+            --arg win64 "$WIN32_PLUGIN" \
+            --arg linux64 "$LINUX_PLUGIN" \
+            --arg darwin64 "$MACOS_PLUGIN" \
             '. + { windows-amd64: $win64, linux-amd64: $linux64, darwin-amd64: $darwin64 }' \
             > localaddon.json
+
+          cat localaddon.json
 
       - name: Upload release
         uses: actions/upload-artifact@v3
