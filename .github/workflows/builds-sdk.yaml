@@ -149,9 +149,9 @@ jobs:
 
           mkdir deploy
 
-          find . -name '*.so' -exec cp {} deploy/
-          find . -name '*.dylib' -exec cp {} deploy/
-          find . -name '*.dll' -exec cp {} deploy/
+          find . -name '*.so' -exec cp {} deploy/ \;
+          find . -name '*.dylib' -exec cp {} deploy/ \;
+          find . -name '*.dll' -exec cp {} deploy/ \;
 
           ls deploy/
           cd deploy/
