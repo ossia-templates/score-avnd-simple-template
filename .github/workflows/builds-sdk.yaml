@@ -164,7 +164,7 @@ jobs:
             --arg win64 "$WIN32_PLUGIN" \
             --arg linux64 "$LINUX_PLUGIN" \
             --arg darwin64 "$MACOS_PLUGIN" \
-            '. + { windows-amd64: $win64, linux-amd64: $linux64, darwin-amd64: $darwin64 }' \
+            '. + { "windows-amd64": $win64, "linux-amd64": $linux64, "darwin-amd64": $darwin64 }' \
             > localaddon.json
 
           cat localaddon.json
