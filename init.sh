@@ -69,6 +69,7 @@ echo -e "# $ADDON\nA new and wonderful [ossia score](https://ossia.io) add-on" >
 find . -name '*.hpp' -exec $PERL -pi -e 'chomp(my $uidgen = `uuidgen`);s|00000000-0000-0000-0000-000000000000|$uidgen|gi' {} \;
 find . -name '*.cpp' -exec $PERL -pi -e 'chomp(my $uidgen = `uuidgen`);s|00000000-0000-0000-0000-000000000000|$uidgen|gi' {} \;
 find . -name '*.json' -exec $PERL -pi -e 'chomp(my $uidgen = `uuidgen`);s|00000000-0000-0000-0000-000000000000|$uidgen|gi' {} \;
+find . -name '*.txt' -exec $PERL -pi -e 'chomp(my $uidgen = `uuidgen`);s|00000000-0000-0000-0000-000000000000|$uidgen|gi' {} \;
 
 rm -rf .git
 git init

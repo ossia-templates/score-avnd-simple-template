@@ -130,13 +130,44 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          path: addon
+
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
 
-      - name: LS
+      - name: Create addon release
         shell: bash
         run: |
           pwd
           ls
           find .
 
+          mkdir deploy
+          find . -name '*.so' -exec cp {} deploy/
+          find . -name '*.dylib' -exec cp {} deploy/
+          find . -name '*.dll' -exec cp {} deploy/
+
+          ls deploy/
+
+          cp plugin-ubuntu-*/*.so deploy/
+          cp plugin-macos-*/*.dylib deploy/
+          cp plugin-windows-*/*.dll
+
+          cd deploy/
+          cat ../addon/addon.json \
+          | jq \
+            --arg win64 *.dll \
+            --arg linux64 *.so \
+            --arg darwin64 *.dylib \
+            '. + { windows-amd64: $win64, linux-amd64: $linux64, darwin-amd64: $darwin64 }' \
+            > localaddon.json
+
+      - name: Upload release
+        uses: actions/upload-artifact@v3
+        with:
+          name: plugin-${{ matrix.config.os }}
+          path: deploy
