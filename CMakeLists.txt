@@ -19,7 +19,7 @@ avnd_score_plugin_add(
     MyAvndEffect/MyAvndEffectModel.hpp
     MyAvndEffect/MyAvndEffectModel.cpp
     MyAvndEffect/MyAvndEffectUi.hpp
-  TARGET my_gain
+  TARGET my_avnd_effect
   MAIN_CLASS MyAvndEffect
   NAMESPACE Example
 )

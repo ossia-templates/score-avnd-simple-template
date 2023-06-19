@@ -12,7 +12,7 @@ class MyAvndEffect
 public:
   halp_meta(name, "My Avendish Gain")
   halp_meta(category, "Audio")
-  halp_meta(c_name, "my_gain")
+  halp_meta(c_name, "my_avnd_effect")
   halp_meta(uuid, "00000000-0000-0000-0000-000000000000")
 
   // Define inputs and outputs ports.
