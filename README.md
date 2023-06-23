@@ -15,4 +15,4 @@ in order to update the namespace, filenames, etc to match your name, as well as 
 
 - When it is ready and you want to make it available to all _ossia score_ users, register your add-on by submitting a pull-request to https://github.com/ossia/score-addons
 
-- Do not forget to regularly update the versions of score you are testing against by updating .github/workflows/jit.yml
+- Do not forget to regularly update the versions of score you are testing against by updating the workflows in `.github/workflows`.
