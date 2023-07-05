@@ -4,7 +4,9 @@ if(NOT TARGET score_lib_base)
   include(ScoreExternalAddon)
 endif()
 
-include(ScoreAvndHelper)
+if(NOT TARGET score_plugin_avnd)
+  return()
+endif()
 
 project(score_addon_my_avnd_effect LANGUAGES CXX)
 
