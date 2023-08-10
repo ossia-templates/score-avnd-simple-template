@@ -25,6 +25,10 @@ if [[ ! -x "$RENAME" ]] ; then
   RENAME=$(command -v rename)
 fi
 
+if [[ ! -x "$RENAME" ]] ; then
+  RENAME=$(command -v prename)
+fi
+
 RENAME_KIND=$($RENAME --help | grep -i PERLEXPR)
 if [[ "$RENAME_KIND" == "" ]]; then
   echo "Install perl-rename (sometimes called just 'rename')"
