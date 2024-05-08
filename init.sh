@@ -21,12 +21,13 @@ if [[ ! -x "$PERL" ]] ; then
 fi
 
 export RENAME=$(command -v perl-rename)
-if [[ ! -x "$RENAME" ]] ; then
-  export RENAME=$(command -v rename)
-fi
 
 if [[ ! -x "$RENAME" ]] ; then
   export RENAME=$(command -v prename)
+fi
+
+if [[ ! -x "$RENAME" ]] ; then
+  export RENAME=$(command -v rename)
 fi
 
 RENAME_KIND=$($RENAME --help | grep -i PERLEXPR)
