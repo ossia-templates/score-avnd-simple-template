@@ -4,7 +4,7 @@ if(NOT TARGET score_lib_base)
   include(ScoreExternalAddon)
 endif()
 
-if(NOT TARGET score_plugin_avnd)
+if(NOT TARGET avnd_halp_module)
   return()
 endif()
 
