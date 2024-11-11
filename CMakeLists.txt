@@ -10,6 +10,8 @@ endif()
 
 project(score_addon_my_avnd_effect LANGUAGES CXX)
 
+score_common_setup()
+
 avnd_score_plugin_init(
   BASE_TARGET score_addon_my_avnd_effect
 )
