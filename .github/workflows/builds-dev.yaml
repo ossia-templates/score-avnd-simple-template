@@ -26,7 +26,7 @@ jobs:
           - {
               name: "Windows",
               os: windows-latest,
-              dependencies: "choco install -y ninja",
+              dependencies: "curl -L -O https://github.com/ninja-build/ninja/releases/download/v1.13.1/ninja-win.zip && unzip ninja-win.zip",
               additional_flags: "-GNinja"
             }
           - {
