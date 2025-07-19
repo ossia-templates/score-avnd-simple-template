@@ -62,6 +62,7 @@ jobs:
           ${{ matrix.config.dependencies }}
 
       - name: Download OSSIA SDK
+        id: ossia-sdk
         uses: ossia/actions/download-ossia-sdk@master
         with:
           score-path: score
@@ -72,7 +73,7 @@ jobs:
           addon-path: addon
           build-type: Debug
           score-path: score
-          ossia-sdk-path: ${{ steps.download-ossia-sdk.outputs.sdk-path }}
+          ossia-sdk-path: ${{ steps.ossia-sdk.outputs.sdk-path }}
           additional-flags: ${{ matrix.config.additional_flags }}
 
       - name: Build release
@@ -81,7 +82,7 @@ jobs:
           addon-path: addon
           build-type: Release
           score-path: score
-          ossia-sdk-path: ${{ steps.download-ossia-sdk.outputs.sdk-path }}
+          ossia-sdk-path: ${{ steps.ossia-sdk.outputs.sdk-path }}
           additional-flags: ${{ matrix.config.additional_flags }}
 
       - name: Upload release
