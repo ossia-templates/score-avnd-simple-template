@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  jit-stable:
+  jit:
     name: "JIT ${{ matrix.config.name }} ${{ matrix.version }}"
     runs-on: ${{ matrix.config.os }}
     timeout-minutes: 10

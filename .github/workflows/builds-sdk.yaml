@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    name: ${{ matrix.config.name }}
+    name: "SDK ${{ matrix.config.name }} ${{ matrix.version }}"
     runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
@@ -64,6 +64,7 @@ jobs:
         id: score-sdk
         with:
           version: "${{ matrix.version }}"
+          extract-path: "${{ runner.temp }}/sdk"
 
       - name: Build debug
         uses: ossia/actions/build-addon@master
@@ -88,8 +89,7 @@ jobs:
         with:
           name: plugin-${{ matrix.config.os }}
           path: |
-            build-Release/install/plugins
-            build-Release/install/lib
+            install/*
 
   package:
     name: Package
