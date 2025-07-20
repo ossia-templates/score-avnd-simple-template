@@ -22,6 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        version: [ "latest", "continuous" ]
         config:
           - {
               name: "Windows",
@@ -62,7 +63,7 @@ jobs:
         uses: ossia/actions/download-score-sdk@master
         id: score-sdk
         with:
-          version: continuous
+          version: "${{ matrix.version }}"
 
       - name: Build debug
         uses: ossia/actions/build-addon@master

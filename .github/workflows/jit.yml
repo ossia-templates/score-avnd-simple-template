@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [ 3.5.3, "continuous" ]
+        version: [ "latest", "continuous" ]
         config:
           - { name: "Windows", os: windows-latest }
           - { name: "Ubuntu", os: ubuntu-latest }
@@ -37,16 +37,8 @@ jobs:
 
       - name: Download Score SDK
         uses: ossia/actions/download-score-sdk@master
-        if: ${{ matrix.version != 'continuous' }}
         with:
-          version: "v${{ matrix.version }}"
-          extract-path: "${{ runner.temp }}/sdk"
-
-      - name: Download Score SDK
-        uses: ossia/actions/download-score-sdk@master
-        if: ${{ matrix.version == 'continuous' }}
-        with:
-          version: continuous
+          version: "${{ matrix.version }}"
           extract-path: "${{ runner.temp }}/sdk"
 
       - name: JIT compile test
