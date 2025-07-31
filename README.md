@@ -1,4 +1,4 @@
-# Template add-on for score audio effects
+# Template add-on for score processors
 
 - Read the Avendish docs [here](https://celtera.github.io/avendish/) and for more advanced use-case, plug-in docs [here](https://ossia.io/score-docs/development).
 - When cloning this template for the first time, run :
