@@ -23,13 +23,19 @@ if [[ ! -x "$RENAME" ]] ; then
   RENAME=$(command -v rename)
 fi
 
-RENAME_KIND=$($RENAME --help | grep -i PERLEXPR)
-if [[ "$OSTYPE" != "darwin"* ]]; then
-if [[ "$RENAME_KIND" == "" ]]; then
+# Probe rather than read --help: Homebrew's rename takes the same perl
+# expression as perl-rename but never prints PERLEXPR, so parsing the help text
+# rejects a tool that would have worked. The darwin bypass this replaces meant a
+# genuinely missing rename went unnoticed there instead.
+RENAME_PROBE=$(mktemp -d)
+: > "$RENAME_PROBE/probe_a"
+( cd "$RENAME_PROBE" && "$RENAME" 's/probe_a/probe_b/' probe_a ) >/dev/null 2>&1
+if [[ ! -e "$RENAME_PROBE/probe_b" ]]; then
+  rm -rf "$RENAME_PROBE"
   echo "Install perl-rename (sometimes called just 'rename')"
   exit 1
 fi
-fi
+rm -rf "$RENAME_PROBE"
 
 SED=/usr/bin/sed
 if [[ "$OSTYPE" == "darwin"* ]]; then
