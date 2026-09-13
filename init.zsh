@@ -66,13 +66,10 @@ $SED -i "s/my-avnd-effect/$ADDON_LC_DASHES/g" **/*.{hpp,cpp,txt,json} release.sh
 echo -e "# $ADDON\nA new and wonderful [ossia score](https://ossia.io) add-on" > README.md
 
 
-# One uuid for the whole add-on. score matches localaddon.json's "key" against
-# the PLUGIN_UUID compiled into the plug-in, and rejects the add-on outright if
-# they differ -- so every file has to carry the same one. Running uuidgen inside
-# find -exec minted a fresh uuid per file instead.
-# addon.json also carries the placeholder as a display name, which no
-# rename above touches -- every add-on made from this template shipped as
-# "My Avnd Effect" in the add-on manager.
+# One uuid for the whole add-on: score matches localaddon.json's "key" against the
+# PLUGIN_UUID compiled into the plug-in, and rejects the add-on if they differ.
+# addon.json also carries the placeholder as a display name, which no rename
+# above touches.
 $SED -i "s/My Avnd Effect/$ADDON/g;s/My Device/$ADDON/g;s/My Process/$ADDON/g" addon.json 2>/dev/null || true
 
 ADDON_UUID=$(uuidgen)
