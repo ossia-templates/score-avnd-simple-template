@@ -59,9 +59,9 @@ fi
 mv "MyAvndEffect" "$ADDON"
 $RENAME "s/my_avnd_effect/$ADDON_LC/" **/*.{hpp,cpp,txt}
 $RENAME "s/MyAvndEffect/$ADDON/" **/*.{hpp,cpp,txt}
-$SED -i "s/my_avnd_effect/$ADDON_LC/g" **/*.{hpp,cpp,txt}
-$SED -i "s/MyAvndEffect/$ADDON/g" **/*.{hpp,cpp,txt} release.sh
-$SED -i "s/my-avnd-effect/$ADDON_LC_DASHES/g" **/*.{hpp,cpp,txt} release.sh
+$SED -i "s/my_avnd_effect/$ADDON_LC/g" **/*.{hpp,cpp,txt,json}
+$SED -i "s/MyAvndEffect/$ADDON/g" **/*.{hpp,cpp,txt,json} release.sh
+$SED -i "s/my-avnd-effect/$ADDON_LC_DASHES/g" **/*.{hpp,cpp,txt,json} release.sh
 
 echo -e "# $ADDON\nA new and wonderful [ossia score](https://ossia.io) add-on" > README.md
 
@@ -70,6 +70,11 @@ echo -e "# $ADDON\nA new and wonderful [ossia score](https://ossia.io) add-on" >
 # the PLUGIN_UUID compiled into the plug-in, and rejects the add-on outright if
 # they differ -- so every file has to carry the same one. Running uuidgen inside
 # find -exec minted a fresh uuid per file instead.
+# addon.json also carries the placeholder as a display name, which no
+# rename above touches -- every add-on made from this template shipped as
+# "My Avnd Effect" in the add-on manager.
+$SED -i "s/My Avnd Effect/$ADDON/g;s/My Device/$ADDON/g;s/My Process/$ADDON/g" addon.json 2>/dev/null || true
+
 ADDON_UUID=$(uuidgen)
 find . \( -name '*.hpp' -o -name '*.cpp' -o -name '*.json' -o -name '*.txt' \) \
   -exec $PERL -pi -e "s|00000000-0000-0000-0000-000000000000|$ADDON_UUID|gi" {} \;
