@@ -11,7 +11,8 @@ class MyAvndEffect
 {
 public:
   halp_meta(name, "My Avendish Gain")
-  halp_meta(category, "Audio")
+  halp_meta(category, "Audio/Utilities")
+  halp_meta(description, "Apply an adjustable gain to multichannel audio.")
   halp_meta(c_name, "my_avnd_effect")
   halp_meta(uuid, "00000000-0000-0000-0000-000000000000")
 
